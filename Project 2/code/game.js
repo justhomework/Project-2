@@ -4,7 +4,7 @@ var actorChars = {
   "o": Coin, // A coin will wobble up and down
   "=": Lava, "|": Lava, "v": Lava,
   "p": Portal,
-  "j": Jump
+  "b": Booster
 };
 
 function Level(plan) {
@@ -101,13 +101,13 @@ function Portal(pos) { //constructor
 }
 Portal.prototype.type = "portal"; //declare type
 
-function Jump(pos) { //constructor
+function Booster(pos) { //constructor
   this.basePos = this.pos = pos.plus(new Vector(0.2, 0.1));
   this.size = new Vector(0.6, 0.6);
   // Make it go back and forth in a sine wave.
   this.wobble = Math.random() * Math.PI * 2;
 }
-Jump.prototype.type = "jump";
+Booster.prototype.type = "booster";
 // Lava is initialized based on the character, but otherwise has a
 // size and position
 function Lava(pos, ch) {
@@ -326,7 +326,7 @@ Portal.prototype.act = function(step) { //make it move
 
   var wobbleSpeed = 8, wobbleDist = 0.07;
 
-  Jump.prototype.act = function(step) { //make it move
+  Booster.prototype.act = function(step) { //make it move
     this.wobble += step * wobbleSpeed;
     var wobblePos = Math.sin(this.wobble) * wobbleDist;
     this.pos = this.basePos.plus(new Vector(0, wobblePos));
@@ -412,7 +412,7 @@ Level.prototype.playerTouched = function(type, actor) {
   else if (type == "portal"){
     this.player.pos = new Vector(10,10);
   }
-  else if (type == "jump"){
+  else if (type == "booster"){
     playerXSpeed = 14;
   }
 };

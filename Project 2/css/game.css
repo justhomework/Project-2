@@ -10,7 +10,7 @@
 .coin   { background: rgb(250, 128, 114); }
 .portal {background: rgb(255, 250, 205);}
 .player {background: rgb(250, 128, 114);}
-.jump   {background: rgb(30, 144, 255);}
+.booster   {background: rgb(30, 144, 255);}
 
 .game {
   overflow: hidden;
